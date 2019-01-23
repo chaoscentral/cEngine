@@ -3,10 +3,6 @@
 ################################################################################
 
 /.vs
-/src/cEngine/.vs/cEngine/v15
-/src/cEngine/x64/Debug
-/src/.vs/cEngine/v15
-/src/x64/Debug
-/src/bin/Debug-x64
-/src/bin-int/Debug-x64/cEngine/cEngine.tlog
-/src/bin-int/Debug-x64
+/cEngine/.vs
+/bin
+/bin-int
