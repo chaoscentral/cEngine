@@ -12,5 +12,16 @@ public:
 };
 
 cEngine::Application* cEngine::CreateApplication() {
-	return new Sandbox();
+	Application* app;
+
+	app = new Application();
+	if (!app) {
+		return NULL;
+	}
+
+	bool result = app->Init();
+	if (result) {
+		app->Run();
+	}
+	return app;
 }
