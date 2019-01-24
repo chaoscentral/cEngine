@@ -13,3 +13,6 @@
 /cEngine/cEngine.vcxproj
 /cEngine/cEngine.vcxproj.filters
 /cEngine/cEngine.vcxproj.user
+/cEngine/cEngine.xcodeproj
+/cEngine.xcworkspace
+/sandbox/Sandbox.xcodeproj
