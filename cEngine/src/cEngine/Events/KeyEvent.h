@@ -46,7 +46,7 @@ namespace cEngine
 		{
 			std::stringstream ss;
 			ss << "KeyReleasedEvent: " << m_KeyCode;
-			return ss.str;
+			return ss.str();
 		}
 
 		EVENT_CLASS_TYPE(KeyReleased)
@@ -56,13 +56,13 @@ namespace cEngine
 	{
 	public:
 		KeyTypedEvent(int keycode)
-			:KeyEvent(keycode) {}
+			: KeyEvent(keycode) {}
 
 		std::string ToString() const override
 		{
 			std::stringstream ss;
 			ss << "KeyTypedEvent: " << m_KeyCode;
-			return ss.str;
+			return ss.str();
 		}
 
 		EVENT_CLASS_TYPE(KeyTyped)

@@ -11,6 +11,8 @@ workspace "cEngine"
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
+IncludeDir["GLFW"] = "cEngine/vendor/GLFW/include"
+include "cEngine/vendor/GLFW"
 
 project "cEngine"
     location "cEngine"
@@ -32,8 +34,15 @@ project "cEngine"
     includedirs
     {
         "%{prj.name}/src",
-        "%{prj.name}/vendor/spdlog/include"
+        "%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.GLFW}"
     }
+
+	links
+	{
+		"GLFW",
+		"OpenGL32.lib"
+	}
 
     filter "system:windows"
         cppdialect "C++17"

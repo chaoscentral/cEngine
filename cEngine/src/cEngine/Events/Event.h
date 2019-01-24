@@ -1,15 +1,13 @@
 #pragma once
 
+#include "cepch.h"
 #include "cEngine/Core.h"
-#include <string>
-#include <functional>
-#include <sstream>
 
 namespace cEngine {
 	enum class EventType
 	{
 		None = 0,
-		WindowClose, WindowResize,
+		WindowClose, WindowResize, WindowFocus, WindowLostFocus, WindowMoved,
 		AppTick, AppUpdate, AppRender,
 		KeyPressed, KeyReleased, KeyTyped,
 		MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled
@@ -33,8 +31,9 @@ namespace cEngine {
 
 	class CENGINE_API Event
 	{
-		friend class EventDispatcher;
 	public:
+		bool m_Handled = false;
+
 		virtual EventType GetEventType() const = 0;
 		virtual const char* GetName() const = 0;
 		virtual int GetCategoryFlags() const = 0;
@@ -44,9 +43,6 @@ namespace cEngine {
 		{
 			return GetCategoryFlags() & category;
 		}
-
-	private:
-		bool m_Handled = false;
 	};
 
 	class EventDispatcher
