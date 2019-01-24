@@ -11,3 +11,5 @@
 	//Not supported yet. Eventually we can remove this bit and add proper support for other platforms
 	#error CEngine only supports Windows!
 #endif
+
+#define BIT(x) (1 << x)

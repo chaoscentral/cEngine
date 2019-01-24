@@ -3,9 +3,9 @@
 //For use by cEngine applications
 
 //Engine Includes
-#include "src/Application.h"
-#include "src/Log.h"
+#include "cEngine/Application.h"
+#include "cEngine/Log.h"
 
 //-------------------Entry Point-----------------
-#include "src/EntryPoint.h"
+#include "cEngine/EntryPoint.h"
 //-----------------------------------------------

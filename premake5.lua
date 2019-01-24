@@ -20,6 +20,9 @@ project "cEngine"
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+	pchheader "cepch.h"
+	pchsource "cEngine/src/cepch.cpp"
+
     files
     {
         "%{prj.name}/src/**.h",
@@ -50,14 +53,17 @@ project "cEngine"
 
     filter "configurations:Debug"
 		defines "CE_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "CE_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "CE_DIST"
+		buildoptions "/MD"
         optimize "On"
         
 project "Sandbox"
@@ -77,7 +83,7 @@ project "Sandbox"
     includedirs
 	{
 		"cEngine/vendor/spdlog/include",
-		"cEngine"
+		"cEngine/src"
     }
     
     links
@@ -97,12 +103,15 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "CE_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "CE_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "CE_DIST"
+		buildoptions "/MD"
 		optimize "On"

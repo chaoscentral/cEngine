@@ -1,8 +1,6 @@
 #pragma once
 
 //Includes for shared pointers and spdlog along with the core stuff
-#include <memory>
-
 #include "Core.h"
 #include "spdlog/spdlog.h"
 #include "spdlog/sinks/stdout_color_sinks.h"

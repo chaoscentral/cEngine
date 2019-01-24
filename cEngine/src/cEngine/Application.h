@@ -2,6 +2,9 @@
 
 #include "Core.h"
 
+#include "Events/Event.h"
+#include "Events/ApplicationEvent.h"
+
 namespace cEngine {
 	class CENGINE_API Application
 	{
