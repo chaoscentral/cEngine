@@ -4,6 +4,7 @@
 #define _GRAPHICS_H_
 
 #include <Windows.h>
+#include "d3dclass.h"
 
 namespace cEngine {
 
@@ -25,6 +26,9 @@ namespace cEngine {
 
 	private:
 		bool Render();
+
+	private:
+		D3DClass* m_D3D;
 	};
 
 }
