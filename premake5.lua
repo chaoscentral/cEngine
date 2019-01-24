@@ -77,7 +77,7 @@ project "Sandbox"
     includedirs
 	{
 		"cEngine/vendor/spdlog/include",
-		"cEngine/src"
+		"cEngine"
     }
     
     links
