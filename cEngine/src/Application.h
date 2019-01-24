@@ -7,7 +7,6 @@ namespace cEngine {
 	{
 	public:
 		Application();
-		Application(const Application&);
 		~Application();
 
 		void Run();
