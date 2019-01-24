@@ -6,3 +6,10 @@
 /cEngine/.vs
 /bin
 /bin-int
+*.sln
+/sandbox/sandbox.vcxproj
+/sandbox/sandbox.vcxproj.filters
+/sandbox/sandbox.vcxproj.user
+/cEngine/cEngine.vcxproj
+/cEngine/cEngine.vcxproj.filters
+/cEngine/cEngine.vcxproj.user
