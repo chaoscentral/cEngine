@@ -43,6 +43,22 @@ namespace cEngine {
 	bool Graphics::Frame() {
 		bool result;
 
+		//Update code in here I think let's find out?!
+		float rVal = 0.005f;
+		float bVal = 0.001f;
+		float gVal = 0.007f;
+
+		
+
+		refreshR += rVal;
+		refreshG += gVal;
+		refreshB += bVal;
+
+		if (refreshR >= 1.0f) rVal *= -1.0f;
+		if (refreshG >= 1.0f) gVal *= -1.0f;
+		if (refreshB >= 1.0f) bVal *= -1.0f;
+
+
 		result = Render();
 		if (!result) {
 			return false;
@@ -51,7 +67,7 @@ namespace cEngine {
 	}
 
 	bool Graphics::Render() {
-		m_D3D->BeginScene(0.5f, 0.5f, 0.5f, 1.0f);
+		m_D3D->BeginScene(refreshR, refreshG, refreshB, 1.0f);
 
 		m_D3D->EndScene();
 		return true;

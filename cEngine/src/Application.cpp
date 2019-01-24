@@ -129,7 +129,7 @@ namespace cEngine {
 
 		m_hInstance = GetModuleHandle(NULL);
 
-		m_applicationName = L"cEngine 1.0";
+		m_applicationName = "cEngine 1.0";
 
 		wc.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
 		wc.lpfnWndProc = WndProc;
@@ -140,8 +140,8 @@ namespace cEngine {
 		wc.hIconSm = wc.hIcon;
 		wc.hCursor = LoadCursor(NULL, IDC_ARROW);
 		wc.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
-		wc.lpszMenuName = NULL;
-		wc.lpszClassName = (LPCSTR)m_applicationName;
+		wc.lpszMenuName = m_applicationName;
+		wc.lpszClassName = m_applicationName;
 		wc.cbSize = sizeof(WNDCLASSEX);
 
 		RegisterClassEx(&wc);
@@ -169,7 +169,7 @@ namespace cEngine {
 			posY = (GetSystemMetrics(SM_CYSCREEN) - screenHeight) / 2;
 		}
 
-		m_hWnd = CreateWindowEx(WS_EX_APPWINDOW, (LPCSTR)m_applicationName, (LPCSTR)m_applicationName, WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_POPUP, posX, posY, screenWidth, screenHeight, NULL, NULL, m_hInstance, NULL);
+		m_hWnd = CreateWindowEx(WS_EX_APPWINDOW, m_applicationName, m_applicationName, WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_CAPTION, posX, posY, screenWidth, screenHeight, NULL, NULL, m_hInstance, NULL);
 
 		ShowWindow(m_hWnd, SW_SHOW);
 		SetForegroundWindow(m_hWnd);

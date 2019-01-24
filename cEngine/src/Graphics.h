@@ -8,7 +8,7 @@
 
 namespace cEngine {
 
-	const bool FULL_SCREEN = true;
+	const bool FULL_SCREEN = false;
 	const bool VSYNC_ENABLED = true;
 	const float SCREEN_DEPTH = 1000.0f;
 	const float SCREEN_NEAR = 1.0f;
@@ -29,6 +29,9 @@ namespace cEngine {
 
 	private:
 		D3DClass* m_D3D;
+		float refreshR = 0.0f;
+		float refreshG = 0.0f;
+		float refreshB = 0.0f;
 	};
 
 }
