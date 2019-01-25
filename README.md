@@ -6,7 +6,7 @@ My first attempt at an open source game engine. This is going to be a journey! I
 * Git
 * Visual Studio 2017
 
-Open a command prompt window int the directory where you want to create the cEngine sub folder and enter the following commands
+Open a command prompt window into the directory where you want to create the cEngine sub folder and enter the following commands
 
     git clone https://github.com/chaoscentral/cEngine.git
     cd cEngine
