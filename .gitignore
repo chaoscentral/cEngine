@@ -6,3 +6,13 @@
 /cEngine/.vs
 /bin
 /bin-int
+/cEngine.sln
+/sandbox/sandbox.vcxproj
+/sandbox/sandbox.vcxproj.filters
+/sandbox/sandbox.vcxproj.user
+/cEngine/cEngine.vcxproj
+/cEngine/cEngine.vcxproj.filters
+/cEngine/cEngine.vcxproj.user
+/cEngine/cEngine.xcodeproj
+/cEngine.xcworkspace
+/sandbox/Sandbox.xcodeproj

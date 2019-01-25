@@ -1,0 +1,6 @@
+[submodule "cEngine/vendor/spdlog"]
+	path = cEngine/vendor/spdlog
+	url = https://github.com/gabime/spdlog
+[submodule "cEngine/vendor/GLFW"]
+	path = cEngine/vendor/GLFW
+	url = https://github.com/TheCherno/GLFW
