@@ -26,6 +26,8 @@ namespace cEngine {
 		bool m_Running = true;
 	private:
 		static Application* s_Instance;
+		double previousTime;
+		int frameCount = 0;
 	};
 	//Create a sort of callback function our client can use to get things started
 	Application* CreateApplication();

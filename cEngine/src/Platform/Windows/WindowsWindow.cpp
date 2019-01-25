@@ -44,6 +44,9 @@ namespace cEngine
 			int success = glfwInit();
 			CE_CORE_ASSERT(success, "Could not initialize GLFW!");
 			glfwSetErrorCallback(GLFWErrorCallback);
+			int maj, min, rev;
+			glfwGetVersion(&maj, &min, &rev);
+			CE_CORE_INFO("GLFW Version {0}.{1}.{2} Initialized!", maj, min, rev);
 			s_GLFWInitialized = true;
 		}
 

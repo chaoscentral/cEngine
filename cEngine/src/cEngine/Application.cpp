@@ -16,6 +16,7 @@ namespace cEngine {
 
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+		previousTime = glfwGetTime();
 	}
 
 
@@ -26,12 +27,28 @@ namespace cEngine {
 	void Application::OnEvent(Event& e)
 	{
 		EventDispatcher dispatcher(e);
+		#ifdef CE_DEBUG
+			CE_CORE_TRACE("{0}", e.ToString());
+		#endif
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
 	}
 
 	void Application::Run() {
 		while (m_Running)
 		{
+			//Need to setup a call to an actual game loop
+			//So right now I got some hacky discreet code that figures out the current framerate and prints it to the conosole
+			//Along with setting up the current frame buffer
+			double currentTime = glfwGetTime();
+			frameCount++;
+
+			if (currentTime - previousTime >= 1.0)
+			{
+				CE_CORE_TRACE("FPS: {0}", frameCount);
+				frameCount = 0;
+				previousTime = currentTime;
+			}
+
 			glClearColor(1, 0, 1, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
 
@@ -43,6 +60,8 @@ namespace cEngine {
 	bool Application::OnWindowClose(WindowCloseEvent& e)
 	{
 		m_Running = false;
+		frameCount = 0;
+		previousTime = 0.0;
 		return true;
 	}
 }
