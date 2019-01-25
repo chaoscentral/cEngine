@@ -3,3 +3,6 @@ My first attempt at an open source game engine. This is going to be a journey! I
 
 # How to build
 This one should be pretty simple. If on Windows just run the RebuildProjects.bat file. This will generate all of the project and solution files for Visual Studio 2017
+
+# Current Issues
+Depending on your system you may or may not needd to change the "OpenGL32.lib" include in the premake5.lua script. apparently it is case sensitive so it may have to change to "opengl32.lib" if you are getting linking errors.
