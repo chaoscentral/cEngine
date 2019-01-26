@@ -39,7 +39,6 @@ namespace cEngine {
 	void Application::OnEvent(Event& e)
 	{
 		EventDispatcher dispatcher(e);
-		CE_CORE_TRACE("{0}", e.ToString());
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
 
 		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); )
@@ -68,7 +67,7 @@ namespace cEngine {
 			glClearColor(1, 0, 1, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
 
-			for (Layer* layer : m_LayerStack)
+			for(Layer* layer : m_LayerStack)
 				layer->OnUpdate();
 
 			m_Window->OnUpdate();

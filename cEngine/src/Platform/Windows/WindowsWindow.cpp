@@ -5,8 +5,6 @@
 #include "cEngine/Events/MouseEvent.h"
 #include "cEngine/Events/KeyEvent.h"
 
-//#include <glad/glad.h>
-
 namespace cEngine
 {
 	static bool s_GLFWInitialized = false;

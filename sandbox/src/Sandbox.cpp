@@ -1,8 +1,30 @@
 #include <cEngine.h>
 
+class GameLayer : public cEngine::Layer
+{
+public:
+	//int updateCount = 0;
+
+	GameLayer()
+		: Layer("Sandbox") {}
+
+	void OnUpdate() override
+	{
+		//Handle update events here
+	}
+
+	void OnEvent(cEngine::Event& event) override
+	{
+		//Handle events here
+		CE_TRACE("{0}", event.ToString());
+
+	}
+};
+
 class Sandbox : public cEngine::Application {
 public:
 	Sandbox() {
+		PushLayer(new GameLayer());
 	}
 
 	~Sandbox() {
