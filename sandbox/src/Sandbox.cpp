@@ -19,10 +19,14 @@ class GameLayer : public cEngine::Layer
 
 	void GameLayer::OnEvent(cEngine::Event& event) 
 	{
-		if (event.GetEventType() == cEngine::EventType::KeyPressed) {
-			
-		}
+		cEngine::EventDispatcher dispatcher(event);
+		dispatcher.Dispatch<cEngine::KeyPressedEvent>(CE_BIND_EVENT_FN(GameLayer::OnKeyPressed));
 		event.m_Handled = true;
+	}
+
+	bool GameLayer::OnKeyPressed(cEngine::KeyPressedEvent& e) {
+		CE_INFO("{0}", e.GetKeyCode());
+		return false;
 	}
 };
 
@@ -30,6 +34,7 @@ class Sandbox : public cEngine::Application {
 public:
 	Sandbox() {
 		PushLayer(new GameLayer());
+		PushOverlay(new cEngine::ImGuiLayer());
 	}
 
 	~Sandbox() {

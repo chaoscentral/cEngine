@@ -21,6 +21,7 @@ namespace cEngine
 		inline void SetEventCallback(const EventCallbackFn& callback) override { m_Data.EventCallback = callback; }
 		void SetVSync(bool enabled) override;
 		bool IsVSync() const override;
+		void SetBGColor(float r, float g, float b);
 	private:
 		virtual void Init(const WindowProps& props);
 		virtual void Shutdown();
