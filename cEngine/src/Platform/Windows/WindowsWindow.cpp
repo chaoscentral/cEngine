@@ -5,7 +5,7 @@
 #include "cEngine/Events/MouseEvent.h"
 #include "cEngine/Events/KeyEvent.h"
 
-//#include <glad/glad.h>
+#include <glad/glad.h>
 
 namespace cEngine
 {
@@ -52,8 +52,8 @@ namespace cEngine
 
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
 		glfwMakeContextCurrent(m_Window);
-		//int status = gladLoadGLLLoader((GLADloadproc)glfwGetProcAddress);
-		//CE_CORE_ASSERT(status, "Failed to initialize Glad!");
+		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		CE_CORE_ASSERT(status, "Failed to initialize Glad!");
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 
@@ -156,6 +156,8 @@ namespace cEngine
 	{
 		glfwPollEvents();
 		glfwSwapBuffers(m_Window);
+		glClearColor(1, 0, 1, 1);
+		glClear(GL_COLOR_BUFFER_BIT);
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)

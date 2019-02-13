@@ -1,15 +1,42 @@
 #include <cEngine.h>
 
+
+
+class GameLayer : public cEngine::Layer
+{
+	void GameLayer::OnAttach() 
+	{
+		CE_INFO("Layer attached!!!");
+	}
+
+	void GameLayer::OnDetach() 
+	{
+	}
+
+	void GameLayer::OnUpdate()
+	{
+	}
+
+	void GameLayer::OnEvent(cEngine::Event& event) 
+	{
+		if (event.GetEventType() == cEngine::EventType::KeyPressed) {
+			
+		}
+		event.m_Handled = true;
+	}
+};
+
 class Sandbox : public cEngine::Application {
 public:
 	Sandbox() {
+		PushLayer(new GameLayer());
 	}
 
 	~Sandbox() {
-
+		
 	}
 
-	
+
 };
 
 cEngine::Application* cEngine::CreateApplication() {
