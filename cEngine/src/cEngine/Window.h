@@ -2,11 +2,18 @@
 
 #include "cepch.h"
 
+#include "Platform/Renderers/Renderer.h"
+
 #include "cEngine/Core.h"
 #include "cEngine/Events/Event.h"
 
 namespace cEngine 
 {
+	enum RenderType {
+		OpenGL = 0,
+		DirectX
+	};
+
 	struct WindowProps
 	{
 		std::string Title;
@@ -31,6 +38,15 @@ namespace cEngine
 			: Title(title), Width(width), Height(height) {}
 	};
 
+	struct WindowData
+	{
+		std::string Title;
+		unsigned int Width, Height;
+		bool VSync;
+
+		std::function<void(Event&)> EventCallback;
+	};
+
 	class CENGINE_API Window
 	{
 	public:
@@ -47,6 +63,7 @@ namespace cEngine
 		virtual void SetVSync(bool enabled) = 0;
 		virtual bool IsVSync() const = 0;
 
+		static Window* Create(const WindowProps& props, RenderType renderer);
 		static Window* Create(const WindowProps& props = WindowProps());
 		static Window* CreateDX(const WindowPropsWin32& props = WindowPropsWin32());
 	};

@@ -13,17 +13,7 @@ namespace cEngine {
 	{
 		CE_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
-
-		switch (renderer) {
-		case DirectX:
-			CE_CORE_INFO("Using DirectX Renderer");
-			m_Window = std::unique_ptr<Window>(Window::CreateDX());
-			break;
-		case OpenGL:
-			CE_CORE_INFO("Using OpenGL Renderer");
-			m_Window = std::unique_ptr<Window>(Window::Create());
-			break;
-		}
+		m_Window = std::unique_ptr<Window>(Window::Create(WindowProps(), renderer));
 
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
 		Run();
@@ -48,6 +38,7 @@ namespace cEngine {
 
 	void Application::OnEvent(Event& e)
 	{
+		CE_CORE_TRACE("{0}", e.ToString());
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
 

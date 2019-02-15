@@ -50,5 +50,5 @@ cEngine::Application* cEngine::CreateApplication() {
 	//Trying out one of the new macros
 	CE_INFO("Launching the DLL");
 	//Return a new instance of Sandbox. Not much here at the moment.
-	return new Sandbox(cEngine::RenderType::DirectX);
+	return new Sandbox(cEngine::RenderType::OpenGL);
 }
