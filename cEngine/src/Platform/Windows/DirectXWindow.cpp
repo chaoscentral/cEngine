@@ -38,7 +38,7 @@ namespace cEngine {
 		wc.hIconSm = nullptr;
 		RegisterClassEx(&wc);
 		m_Window = CreateWindowEx(0, pClassName,
-			L"Test",
+			props.Title,
 			WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU,
 			200,
 			200,

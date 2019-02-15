@@ -13,25 +13,20 @@ namespace cEngine {
 	{
 		CE_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
-		WindowProps wp;
 
 		switch (renderer) {
 		case DirectX:
 			CE_CORE_INFO("Using DirectX Renderer");
-			wp.Title = "cEngine";
-			wp.Width = 1280;
-			wp.Height = 720;
 			m_Window = std::unique_ptr<Window>(Window::CreateDX());
-			m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
-			Run();
 			break;
 		case OpenGL:
 			CE_CORE_INFO("Using OpenGL Renderer");
 			m_Window = std::unique_ptr<Window>(Window::Create());
-			m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
-			Run();
 			break;
 		}
+
+		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+		Run();
 	}
 
 
