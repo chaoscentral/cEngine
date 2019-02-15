@@ -32,7 +32,7 @@ class GameLayer : public cEngine::Layer
 
 class Sandbox : public cEngine::Application {
 public:
-	Sandbox::Sandbox(cEngine::Renderer renderer)
+	Sandbox::Sandbox(cEngine::RenderType renderer)
 		: cEngine::Application(renderer) {
 		//do nothing for now
 		PushLayer(new GameLayer());
@@ -50,5 +50,5 @@ cEngine::Application* cEngine::CreateApplication() {
 	//Trying out one of the new macros
 	CE_INFO("Launching the DLL");
 	//Return a new instance of Sandbox. Not much here at the moment.
-	return new Sandbox(cEngine::Renderer::DirectX);
+	return new Sandbox(cEngine::RenderType::DirectX);
 }

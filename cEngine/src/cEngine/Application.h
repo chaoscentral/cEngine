@@ -8,14 +8,14 @@
 #include "Events/ApplicationEvent.h"
 
 namespace cEngine {
-	enum Renderer {
+	enum RenderType {
 		OpenGL = 0,
 		DirectX
 	};
 	class CENGINE_API Application
 	{
 	public:
-		Application(Renderer renderer);
+		Application(RenderType renderer);
 		virtual ~Application();
 
 		void Run();
