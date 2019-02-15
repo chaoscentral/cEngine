@@ -19,6 +19,18 @@ namespace cEngine
 			: Title(title), Width(width), Height(height) {}
 	};
 
+	struct WindowPropsWin32
+	{
+		LPCWSTR Title;
+		unsigned int Width;
+		unsigned int Height;
+
+		WindowPropsWin32(LPCWSTR title = L"cEngine",
+			unsigned int width = 1280,
+			unsigned int height = 720)
+			: Title(title), Width(width), Height(height) {}
+	};
+
 	class CENGINE_API Window
 	{
 	public:
@@ -36,5 +48,6 @@ namespace cEngine
 		virtual bool IsVSync() const = 0;
 
 		static Window* Create(const WindowProps& props = WindowProps());
+		static Window* CreateDX(const WindowPropsWin32& props = WindowPropsWin32());
 	};
 }

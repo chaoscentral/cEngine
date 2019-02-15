@@ -9,13 +9,29 @@ namespace cEngine {
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
 	Application* Application::s_Instance = nullptr;
 
-	Application::Application()
+	Application::Application(Renderer renderer)
 	{
 		CE_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
+		WindowProps wp;
 
-		m_Window = std::unique_ptr<Window>(Window::Create());
-		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+		switch (renderer) {
+		case DirectX:
+			CE_CORE_INFO("Using DirectX Renderer");
+			wp.Title = "cEngine";
+			wp.Width = 1280;
+			wp.Height = 720;
+			m_Window = std::unique_ptr<Window>(Window::CreateDX());
+			m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+			Run();
+			break;
+		case OpenGL:
+			CE_CORE_INFO("Using OpenGL Renderer");
+			m_Window = std::unique_ptr<Window>(Window::Create());
+			m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+			Run();
+			break;
+		}
 	}
 
 
@@ -37,6 +53,7 @@ namespace cEngine {
 
 	void Application::OnEvent(Event& e)
 	{
+		CE_CORE_TRACE(e.ToString());
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
 

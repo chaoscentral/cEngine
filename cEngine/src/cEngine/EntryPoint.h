@@ -6,14 +6,14 @@
 //External call to our client application
 extern cEngine::Application* cEngine::CreateApplication();
 
-int main(int argc, char** argv) {
+int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
 	//We need to initialize our logging system
+	AllocConsole();
 	cEngine::Log::Init();
 
 	//Create the base application
 	auto app = cEngine::CreateApplication();
 	//Run it
-	app->Run();
 	//When done with running delete the app and free up memory
 	delete app;
 }
