@@ -1,4 +1,5 @@
 #include "cEngine/Window.h"
+#include "Platform/Renderers/DXRenderer.h"
 
 #include <Windows.h>
 
@@ -26,6 +27,10 @@ namespace cEngine
 		virtual void Shutdown();
 	private:
 		HWND m_Window;
+		HINSTANCE m_hInstance;
+		LPCWSTR m_className = L"cEngine";
+
+		DXRenderer* renderer = nullptr;
 
 		struct WindowData
 		{

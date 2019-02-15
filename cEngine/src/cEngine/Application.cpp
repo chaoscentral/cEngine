@@ -48,7 +48,6 @@ namespace cEngine {
 
 	void Application::OnEvent(Event& e)
 	{
-		CE_CORE_TRACE(e.ToString());
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
 

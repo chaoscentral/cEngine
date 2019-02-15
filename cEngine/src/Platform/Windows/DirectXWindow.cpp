@@ -21,45 +21,54 @@ namespace cEngine {
 
 	DirectXWindow::DirectXWindow(const WindowPropsWin32 & props)
 	{
-		const LPCWSTR pClassName = L"cEngine";
-
+		m_hInstance = GetModuleHandle(nullptr);
 		WNDCLASSEX wc = { 0 };
 		wc.cbSize = sizeof(wc);
 		wc.style = CS_OWNDC;
 		wc.lpfnWndProc = WndProc;
 		wc.cbClsExtra = 0;
 		wc.cbWndExtra = 0;
-		wc.hInstance = nullptr;
+		wc.hInstance = m_hInstance;
 		wc.hIcon = nullptr;
 		wc.hCursor = nullptr;
 		wc.hbrBackground = nullptr;
 		wc.lpszMenuName = nullptr;
-		wc.lpszClassName = pClassName;
+		wc.lpszClassName = m_className;
 		wc.hIconSm = nullptr;
 		RegisterClassEx(&wc);
-		m_Window = CreateWindowEx(0, pClassName,
+
+		RECT wr;
+		wr.left = 0;
+		wr.right = props.Width;
+		wr.top = 0;
+		wr.bottom = props.Height;
+		if (AdjustWindowRect(&wr, WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU, false) == 0) {
+			return;
+		}
+		m_Window = CreateWindowEx(0, m_className,
 			props.Title,
 			WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU,
-			200,
-			200,
-			props.Width,
-			props.Height,
+			CW_USEDEFAULT,
+			CW_USEDEFAULT,
+			wr.right - wr.left,
+			wr.bottom - wr.top,
 			nullptr,
 			nullptr,
-			nullptr,
+			m_hInstance,
 			nullptr);
 
 		if (m_Window == NULL) {
 			CE_CORE_ERROR("Error initializing Window");
 			return;
 		}
-
+		//Set a pointer to this class for later use in our WinProc
 		SetWindowLongPtr(m_Window, GWLP_USERDATA, (LONG_PTR)this);
 
+		//Setup Direct3D to our HWND
+		renderer = new DXRenderer(m_Window);
+		//Show our Window
 		ShowWindow(m_Window, SW_SHOW);
-
-		
-
+		//Run the Init function of our Window after the system stuff has been setup
 		Init(props);
 	}
 
@@ -81,6 +90,8 @@ namespace cEngine {
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		}
+
+		renderer->OnUpdate();
 	}
 
 	void DirectXWindow::SetVSync(bool enabled)
@@ -104,7 +115,6 @@ namespace cEngine {
 			CE_CORE_INFO("Closing the application");
 			WindowCloseEvent closeEvent;
 			m_Data.EventCallback(closeEvent);
-			//PostQuitMessage(0);
 			break;
 		}
 		case WM_KEYDOWN:
@@ -147,5 +157,8 @@ namespace cEngine {
 
 	void DirectXWindow::Shutdown()
 	{
+		renderer->Shutdown();
+		UnregisterClass(m_className, m_hInstance);
+		DestroyWindow(m_Window);
 	}
 }

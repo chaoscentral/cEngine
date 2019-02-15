@@ -61,7 +61,8 @@ project "cEngine"
         {
             "CE_PLATFORM_WINDOWS",
             "CE_BUILD_DLL",
-			"GLFW_INCLUDE_NONE"
+			"GLFW_INCLUDE_NONE",
+			"IMGUI_IMPL_OPENGL_LOADER_GLAD"
         }
 
         postbuildcommands
